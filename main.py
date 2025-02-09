@@ -245,7 +245,7 @@ if __name__ == '__main__':
     mode = 'walk'
     size_map = 41
     fps = 60
-    number_level = 8
+    number_level = 1
     pygame.init()
     pygame.display.set_caption('Координаты клетки')
     size = width, height = 1100, 900
