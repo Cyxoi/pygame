@@ -228,7 +228,7 @@ class image(pygame.sprite.Sprite):
 
 
 if __name__ == '__main__':
-    win = 0
+    win = 2
     number_potion = 0
     list_text = []
     max_size_list_text = 16
@@ -276,7 +276,37 @@ if __name__ == '__main__':
     screen.fill((0, 0, 0))
 
     while running:
-        if win == 0:
+        # Начальный экран
+        if win == 2:
+            file_statistics = open('data/statistics/statistics_gold.txt', 'r', encoding='utf-8')
+            max_gold = file_statistics.readline()[:-1]
+            last_gold = file_statistics.readline()[:-1]
+            file_statistics.close()
+            screen.fill((0, 0, 0))
+            font = pygame.font.Font(None, 30)
+            text = font.render(f'Лучший счет: {max_gold}', True,
+                               (255, 255, 255))
+            screen.blit(text, [10, 10])
+            font = pygame.font.Font(None, 30)
+            text = font.render(f'Прошлый счет: {last_gold}', True,
+                               (255, 255, 255))
+            screen.blit(text, [10, 40])
+            font = pygame.font.Font(None, 60)
+            text = font.render(f'Проект по PyGame', True,
+                                   (255, 255, 255))
+            screen.blit(text, [370, 300])
+            font = pygame.font.Font(None, 20)
+            text = font.render('Что бы начать новую игру нажмите любую кнопку',
+                               True,
+                               (255, 255, 255))
+            screen.blit(text, [380, 700])
+            pygame.display.flip()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
+                    win = 0
+        elif win == 0:
             count_halls = 0
             dam_player = random.randint(10, 50)
 
